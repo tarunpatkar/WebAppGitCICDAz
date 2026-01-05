@@ -1,4 +1,10 @@
+using Microsoft.EntityFrameworkCore;
+using WebAppGitCICDAz.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+var connectstring = builder.Configuration.GetConnectionString("AzureSqlConnection");
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(connectstring));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
