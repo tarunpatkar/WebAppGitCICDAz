@@ -11,7 +11,7 @@ var connectstring = builder.Configuration.GetConnectionString("AzureSqlConnectio
 //var cs = secretClient.GetSecret("azsql").Value.Value;
 
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(cs));
+    options.UseSqlServer(connectstring));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
