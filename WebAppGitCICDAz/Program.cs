@@ -1,10 +1,17 @@
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
 using Microsoft.EntityFrameworkCore;
 using WebAppGitCICDAz.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectstring = builder.Configuration.GetConnectionString("AzureSqlConnection");
+
+//var keyVaultName = new Uri(builder.Configuration["KeyVaultUrl"]);
+//var secretClient = new SecretClient(keyVaultName, new DefaultAzureCredential());
+//var cs = secretClient.GetSecret("azsql").Value.Value;
+
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(connectstring));
+    options.UseSqlServer(cs));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
